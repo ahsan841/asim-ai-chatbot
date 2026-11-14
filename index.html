@@ -3,25 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- Website Title -->
-<title>Asim AI - Your AI Chatbot</title>
-
-<!-- SEO Description -->
-<meta name="description" content="Welcome to Asim AI, your personal AI chatbot. Ask questions, get answers, and explore the power of artificial intelligence.">
-
-<!-- Open Graph / WhatsApp Preview -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Asim AI - Your AI Chatbot">
-<meta property="og:description" content="Meet Asim AI, your smart AI assistant. Chat, ask questions and get instant answers!">
-<meta property="og:image" content="https://YOUR-USERNAME.github.io/asim-ai/logo.png">
-<meta property="og:url" content="https://YOUR-USERNAME.github.io/asim-ai/">
-<meta property="og:site_name" content="Asim AI">
-
-<!-- Twitter Preview -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Asim AI - Your AI Chatbot">
-<meta name="twitter:description" content="Your smart AI assistant, available anytime.">
-<meta name="twitter:image" content="https://YOUR-USERNAME.github.io/asim-ai/logo.png">
+<title>Asim Chatbot</title>
+<meta name="description" content="Asim Chatbot — your smart AI assistant for chat, learning and image creation.">
+<meta property="og:type" content="website"><meta property="og:title" content="Asim Chatbot"><meta property="og:description" content="Your smart AI assistant for chat, learning and image creation.">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Asim Chatbot"><meta name="twitter:description" content="Your smart AI assistant for chat, learning and image creation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a1511'/%3E%3Cpath d='M8 54 32 8l8 14H28L18 40h16l8 14z' fill='%2322e06b'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#050b08;--panel:#0a1511;--card:#101d18;--line:#17613a;--g1:#22e06b;--g2:#0fa84a;--tx:#eafff2;--mut:#8fb5a1;--user:#2ee66f;--utx:#04200f}
 :root[data-theme=light]{--bg:#eef8f2;--panel:#fff;--card:#f4fbf7;--line:#8fd6ac;--tx:#0b2517;--mut:#4f7562}
@@ -69,7 +55,7 @@ header .sp{flex:1}
 .dots span{display:inline-block;width:8px;height:8px;margin:0 2px;border-radius:50%;background:var(--g1);animation:b 1s infinite}
 .dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
 @keyframes b{50%{opacity:.25}}
-form{display:flex;gap:10px;align-items:center;padding:12px 14px 14px}
+form#f{display:flex;gap:10px;align-items:center;padding:12px 14px 14px;min-width:0}
 .box{flex:1;display:flex;align-items:center;gap:6px;border:1.5px solid var(--g2);border-radius:999px;padding:6px 8px;background:var(--card)}
 textarea{flex:1;background:none;border:0;color:var(--tx);font:inherit;font-size:16px;resize:none;max-height:120px;padding:9px 0;outline:0}
 .ic{width:40px;height:40px;border-radius:50%;font-size:18px}
@@ -101,6 +87,16 @@ dialog a{color:var(--g1)}
  .hero{flex-direction:column;text-align:center;padding:16px}.bot{font-size:42px}
  .pill.hide{display:none}
  .msg{max-width:94%}
+}
+@media(max-width:520px){
+ body{height:100dvh;min-height:100%;overflow:hidden} main{width:100%;height:100dvh;min-height:0}
+ header{padding:9px 10px;gap:7px} #chat{padding:12px;gap:11px} #atts{padding:6px 10px 0}
+ form#f{padding:8px 9px calc(10px + env(safe-area-inset-bottom));gap:7px;align-items:flex-end}
+ .box{min-width:0;gap:2px;padding:4px 5px;border-radius:22px} .box .ic{width:34px;height:38px;flex:0 0 34px}
+ textarea{min-width:0;width:100%;font-size:16px;padding:9px 3px;max-height:100px}
+ #imgMode{font-size:11px;padding:0 7px;height:32px;flex:0 0 auto} #mic{display:none}
+ .send{width:44px;height:44px;flex:0 0 44px;margin-bottom:1px} .pill{padding:7px 10px;font-size:12px}
+ .pill.hide{display:none} .msg{max-width:96%;font-size:15px} .hero{gap:8px} .chips button{padding:10px 12px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -140,7 +136,6 @@ dialog a{color:var(--g1)}
  <div class="brand"><svg width="56" height="52" viewBox="0 0 56 52"><path d="M4 48 28 4l8 14-10 0-8 14h12l6 10H4z" fill="#22e06b"/><path d="M34 22l18 26H38z" fill="#0fa84a"/></svg><b>Asim Chatbot</b><span>Your smart AI assistant</span></div>
  <button class="nav primary" id="newBtn"><svg class="i"><use href="#i-plus"/></svg> New chat</button>
  <div id="hist" aria-label="Chat history"></div>
- <button class="nav" id="setBtn"><svg class="i"><use href="#i-settings"/></svg> Settings</button>
  <button class="nav" id="clrBtn"><svg class="i"><use href="#i-trash"/></svg> Clear all chats</button>
  <div id="userBar"><span>●</span><span id="userName">Signed in</span><button id="logoutBtn" type="button">Log out</button></div>
  <div class="powered">Powered by<b>Google Gemini</b>Smarter · Faster · Helpful</div>
@@ -148,7 +143,7 @@ dialog a{color:var(--g1)}
 <main>
  <header>
   <button id="menu" aria-label="Open menu"><svg class="i"><use href="#i-menu"/></svg></button>
-  <span class="pill" id="modelPill">Gemini</span>
+  <span class="pill" id="modelPill">Gemini 3.7 Flash</span>
   <span class="sp"></span>
   <span class="pill hide"><svg class="i"><use href="#i-inf"/></svg> Free to use</span>
   <button class="pill" id="theme" aria-label="Toggle theme"><svg class="i sun"><use href="#i-sun"/></svg><svg class="i moon"><use href="#i-moon"/></svg></button>
@@ -176,17 +171,6 @@ dialog a{color:var(--g1)}
   </form><div id="authMsg" role="status">Please log in or create an account. Email confirmation may be required.</div>
  </div>
 </section>
-<dialog id="dlg">
- <h2>Owner Settings</h2><p style="font-size:13px;color:var(--mut);margin-top:6px">These controls are shown only to the owner account in this interface.</p>
- <label for="key">Gemini API key (free)</label>
- <input id="key" type="password" placeholder="AIza…" autocomplete="off">
- <p style="font-size:13px;color:var(--mut);margin-top:6px">Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. It stays only in your browser.</p>
- <label for="model">Gemini chat model</label>
- <input id="model" value="gemini-2.5-flash">
- <div style="font-size:13px;color:var(--mut);margin:12px 0">Image generation uses AI Horde's community-powered free service. No OpenRouter key or payment is needed. Anonymous requests may take longer because they have the lowest queue priority.</div>
- <div class="row"><button id="cancel" type="button">Cancel</button><button id="save" class="ok" type="button">Save</button></div>
-</dialog>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // Add your Supabase Project URL and Publishable key here (never use service_role in a browser).
@@ -199,7 +183,8 @@ let currentUser = null;
 const $=s=>document.querySelector(s);
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let chats=[],cur=null,busy=false;
-let cfg=Object.assign({key:'',model:'gemini-2.5-flash'},store.get('asim_cfg',{}));
+// The frontend and backend must be served together from Render. GitHub Pages has no /api/chat route.
+const CHAT_API = location.hostname.endsWith('github.io') ? null : '/api/chat';
 let imageMode=false;
 const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function md(t){
@@ -331,58 +316,29 @@ function render(){
 }
 function newChat(){cur=null;render();$('#side').classList.remove('open')}
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-async function requestGemini(model,body){
- const url='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(model)+':generateContent';
- let lastError='Request failed';
- // One quick retry for temporary overload; cap each request so the UI cannot spin forever.
- for(let attempt=0;attempt<2;attempt++){
-  let response;
-  const controller=new AbortController();
-  const timeoutId=setTimeout(()=>controller.abort(),45000);
-  try{
-   response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':cfg.key},body:JSON.stringify(body),signal:controller.signal});
-  }catch(err){
-   lastError=err.name==='AbortError'?'Request timed out after 45 seconds. Please try again.':(err.message||'Network connection failed');
-   if(attempt<1){await sleep(1000);continue;}
-   throw new Error(lastError);
-  }finally{clearTimeout(timeoutId);}
-  let data={};
-  try{data=await response.json()}catch(_){data={}}
-  if(response.ok)return data;
-  const status=response.status;
-  lastError=(data.error&&data.error.message)||('HTTP '+status);
-  const temporary=[429,500,502,503,504].includes(status);
-  if(!temporary||attempt===1){
-   const e=new Error(lastError);e.status=status;e.temporary=temporary;throw e;
-  }
-  await sleep(1000);
- }
- throw new Error(lastError);
+async function requestChatBackend(body){
+ if(!CHAT_API) throw new Error('Aap GitHub Pages wala link open kar rahe hain. Chat ke liye Render par deploy hone ke baad uska onrender.com link open karein.');
+ const {data:{session}} = await sb.auth.getSession();
+ if(!session?.access_token) throw new Error('Your login session expired. Please log in again.');
+ let response;
+ try { response=await fetch(CHAT_API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token},body:JSON.stringify(body)}); }
+ catch(networkError) { throw new Error('Backend se connection nahi ho saka. Render dashboard mein service Live check karein aur apna onrender.com link open karein.'); }
+ let data={};try{data=await response.json()}catch(_){data={}}
+ if(!response.ok){const err=new Error(data.error||('Request failed: HTTP '+response.status));err.status=response.status;throw err;}
+ return data;
 }
 async function send(text){
  text=(text||'').trim();if((!text&&!pending.length)||busy)return;text=text||'Please look at the attached file(s) and help me.';
- if(!cfg.key){$('#dlg').showModal();return}
+ if(!currentUser||!sb){showAuth();return}
  if(!cur){cur={id:crypto.randomUUID(),title:text.slice(0,40),msgs:[]};chats.push(cur)}
  if(!cur.msgs.length)$('#chat').innerHTML='';
  const files=pending;pending=[];renderAtts();cur.msgs.push({role:'user',text,files});addMsg('user',text,files);$('#inp').value='';grow();
- const w=addMsg('model','');w.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';
- busy=true;
+ const w=addMsg('model','');w.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';busy=true;
  try{
-  const body={contents:cur.msgs.map(toParts),
-   systemInstruction:{parts:[{text:"You are Asim AI, a friendly, natural, helpful conversational assistant. Detect the language and writing style of the user's latest message and reply in exactly that language and style. If the user writes Roman Urdu/Hinglish, reply in simple natural Roman Urdu/Hinglish like a friendly Pakistani person; if English, reply in English; if Urdu script, reply in Urdu script. Follow language changes immediately. Never randomly switch to Indonesian or another language. For explanations, study notes, assignments, guides, and long answers, organize the response like a clear ChatGPT answer: start with a meaningful title or main heading, use clear section headings and subheadings, explain in readable paragraphs, and use numbered steps or bullet points wherever helpful. Avoid one huge paragraph. Keep wording simple and well-structured, but make short replies when the user only asks a simple question. Use bold emphasis for important terms when useful. Do not announce which language you detected."}]}};
-  let result,usedModel=cfg.model;
-  try{
-   result=await requestGemini(usedModel,body);
-  }catch(firstError){
-   // Switch only when the selected model is temporarily unavailable; never mask key/quota errors.
-   if(!firstError.temporary)throw firstError;
-   usedModel='gemini-3.5-flash-lite';
-   w.innerHTML='<span class="dots"><span></span><span></span><span></span></span><small>Primary model busy. Trying backup model…</small>';
-   result=await requestGemini(usedModel,body);
-  }
-  const out=(result.candidates&&result.candidates[0]&&result.candidates[0].content&&result.candidates[0].content.parts&&result.candidates[0].content.parts.map(p=>p.text||'').join(''))||'No response. Try rephrasing your question.';
-  cur.msgs.push({role:'model',text:out});save();w.remove();addMsg('model',out);
- }catch(e){w.remove();cur.msgs.pop();const detail=e.status===503?'Google Gemini is temporarily busy. Please wait a little and try again.':e.status===429?'Gemini request limit reached. Please wait and try again.':e.status===400||e.status===401||e.status===403?'API key, project access, or request settings need checking.':e.message;addMsg('model','Asim AI: '+detail+'\n\nTechnical detail: '+e.message)}
+  const body={contents:cur.msgs.map(toParts),systemInstruction:{parts:[{text:"You are Asim AI, a friendly, natural, helpful conversational assistant. Detect the language and writing style of the user's latest message and reply in exactly that language and style. If the user writes Roman Urdu/Hinglish, reply in simple natural Roman Urdu/Hinglish like a friendly Pakistani person; if English, reply in English; if Urdu script, reply in Urdu script. Follow language changes immediately. Never randomly switch to Indonesian or another language. For explanations, study notes, assignments, guides, and long answers, organize the response like a clear ChatGPT answer: start with a meaningful title or main heading, use clear section headings and subheadings, explain in readable paragraphs, and use numbered steps or bullet points wherever helpful. Avoid one huge paragraph. Keep wording simple and well-structured, but make short replies when the user only asks a simple question. Use bold emphasis for important terms when useful. Do not announce which language you detected."}]}};
+  const result=await requestChatBackend(body);const answer=String(result.text||'No response. Try rephrasing your question.');
+  cur.msgs.push({role:'model',text:answer});await save();w.remove();addMsg('model',answer);
+ }catch(e){w.remove();cur.msgs.pop();const detail=e.status===401?'Your login session expired. Please log out and log in again.':e.status===429?'The chatbot is busy. Please wait a little and try again.':e.message;addMsg('model','Asim AI: '+detail)}
  busy=false;renderHist();
 }
 function grow(){const t=$('#inp');t.style.height='auto';t.style.height=Math.min(t.scrollHeight,120)+'px'}
@@ -447,10 +403,7 @@ $('#menu').onclick=()=>$('#side').classList.toggle('open');
 $('#clrBtn').onclick=async()=>{if(!confirm('Delete all your chats from this account?'))return;if(currentUser&&sb){const {error}=await sb.from('chats').delete().eq('user_id',currentUser.id);if(error){alert('Could not delete cloud chats: '+error.message);return}}chats=[];cur=null;render();};
 $('#theme').onclick=()=>{const l=document.documentElement.dataset.theme==='light';document.documentElement.dataset.theme=l?'dark':'light';store.set('asim_theme',l?'dark':'light')};
 document.documentElement.dataset.theme=store.get('asim_theme','dark');
-function showModel(){$('#modelPill').innerHTML='<svg class="i"><use href="#i-bolt"/></svg> '+esc(cfg.model)}
-$('#setBtn').onclick=()=>{if(!isOwner()){alert('Owner settings are available only to the owner account.');return;}$('#key').value=cfg.key;$('#model').value=cfg.model;$('#dlg').showModal()};
-$('#cancel').onclick=()=>$('#dlg').close();
-$('#save').onclick=()=>{cfg={key:$('#key').value.trim(),model:$('#model').value.trim()||'gemini-2.5-flash'};store.set('asim_cfg',cfg);const check=store.get('asim_cfg',{});if(String(check.key||'')!==cfg.key||String(check.model||'')!==cfg.model){alert('Settings save nahi ho sakin. Browser storage blocked hai.');return}showModel();$('#dlg').close();alert('Settings saved. AI Horde image generation ke liye OpenRouter key ki zaroorat nahi.')};
+function showModel(){$('#modelPill').textContent='Gemini 3.7 Flash'}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(SR){const r=new SR();r.lang='ur-PK';r.interimResults=false;let on=false;
  r.onresult=e=>{$('#inp').value+=e.results[0][0].transcript;grow()};
@@ -460,7 +413,7 @@ if(SR){const r=new SR();r.lang='ur-PK';r.interimResults=false;let on=false;
 // Authentication gate: app content remains hidden until a valid Supabase session exists.
 function authMessage(message,isError=false){$('#authMsg').textContent=message;$('#authMsg').style.color=isError?'#ff8c8c':'var(--mut)'}
 function isOwner(user=currentUser){return !!user && String(user.email||'').toLowerCase()===OWNER_EMAIL;}
-function updateOwnerUI(){const owner=isOwner();$('#setBtn').style.display=owner?'':'none';$('#setBtn').setAttribute('aria-hidden',owner?'false':'true');if(!owner && $('#dlg').open)$('#dlg').close();}
+function updateOwnerUI(){}
 function showApp(user){currentUser=user;updateOwnerUI();$('#authGate').style.display='none';$('#userName').textContent=user.user_metadata?.full_name||user.email||'Account';}
 function showAuth(){currentUser=null;updateOwnerUI();$('#authGate').style.display='grid';$('#userName').textContent='Signed out';chats=[];cur=null;$('#chat').innerHTML='';renderHist();}
 async function authAction(mode){
@@ -482,10 +435,9 @@ async function authAction(mode){
 $('#signInBtn').onclick=()=>authAction('login');$('#signUpBtn').onclick=()=>authAction('signup');
 $('#authForm').addEventListener('submit',e=>{e.preventDefault();authAction('login')});
 $('#logoutBtn').onclick=async()=>{if(!sb)return;const {error}=await sb.auth.signOut();if(error)alert(error.message);else showAuth();};
-$('#setBtn').style.display='none';
 showModel();render();
 (async()=>{
- if(!sb){showAuth();authMessage('Setup required: add your Supabase Project URL and Publishable key in the config section at the top of this file.',true);return;}
+ if(!sb){showAuth();authMessage('Login service is not configured. Please contact the site owner.',true);return;}
  const {data,error}=await sb.auth.getSession();if(error){showAuth();authMessage(error.message,true);return;}
  if(data.session?.user){showApp(data.session.user);try{await loadCloudChats()}catch(e){authMessage('Could not load chats. Check that the chats table and RLS policies are set up: '+e.message,true)}}else showAuth();
  sb.auth.onAuthStateChange(async(_event,session)=>{
